@@ -6,11 +6,16 @@
  */
 let canvas = undefined;
 let jim = undefined;
+let displayHeight, displayWidth;
+let xMin, xMax, yMin, yMax;
 const agents = [];
 function setup() {
   canvas = createCanvas(100, 100);
   canvas.parent("sketch");
   jim = new Agent(random(width), random(height));
+
+  displayHeight = window.screen.height;
+  displayWidth = window.screen.width;
   // Agent().display(); will throw an error
 }
 
@@ -61,6 +66,19 @@ function Agent(x, y) {
    * this update function
    */
   this.update = function() {
+    if(this.x == displayWidth)
+    {
+      if(this.y == displayHeight)
+      {
+        this.x = this.x + random(-1, 0);
+        this.y = this.y + random(-1, 0);
+      }
+      else
+      {
+        this.x = this.x + random(-1, 0);
+        this.y = this.y + random(-1, 1);
+      }
+    }
     this.x = this.x + random(-1, 1);
     this.y = this.y + random(-1, 1);
     // constrain him to the canvas

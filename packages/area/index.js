@@ -8,6 +8,7 @@ let x = 0;
 let canvas = undefined;
 const step = 25;
 const areas = [];
+
 function setup() {
   canvas = createCanvas(100, 100);
   canvas.parent("sketch");
@@ -20,10 +21,12 @@ function setup() {
 }
 
 function draw() {
+  canvas.clear()
   for (const item of areas) {
     item.update(mouseX, mouseY);
     item.display();
   }
+
 }
 
 function Area(x, y, w, h) {
@@ -53,11 +56,14 @@ function Area(x, y, w, h) {
 
   this.display = function() {
     if (this.isOver === true) {
-      fill("#ff6347");
+      fill('#ff0000');
+      rect(this.x, this.y, this.w*2, this.h*2);
     } else {
       fill("#00ff00");
+      rect(this.x, this.y, this.w*0.5, this.h*0.5);
     }
-    rect(this.x, this.y, this.w, this.h);
+
+    
   };
 }
 
